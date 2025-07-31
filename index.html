@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Income Expense Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+      .transaction-card {
+        margin-bottom: 10px;
+      }
+      #summary {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mb-4">Income Expense Tracker</h1>
+
+      <div id="summary" class="row text-center mb-4">
+        <div class="col-md-4">
+          <h5>Income</h5>
+          <h4 id="income-total">$0</h4>
+        </div>
+        <div class="col-md-4">
+          <h5>Expense</h5>
+          <h4 id="expense-total">$0</h4>
+        </div>
+        <div class="col-md-4">
+          <h5>Balance</h5>
+          <h4 id="balance-total">$0</h4>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <button class="btn btn-success me-2" onclick="showAddForm('Income')">
+          Add Income
+        </button>
+        <button class="btn btn-danger me-2" onclick="showAddForm('Expense')">
+          Add Expense
+        </button>
+        <button class="btn btn-primary" onclick="showAddForm('Transfer')">
+          Transfer
+        </button>
+      </div>
+
+      <!-- Add Transaction Form (hidden by default) -->
+      <div id="add-form" style="display: none" class="mb-4 p-3 border rounded">
+        <h4 id="form-title">Add Transaction</h4>
+        <form id="transaction-form">
+          <input type="hidden" id="transaction-type" />
+          <div class="mb-3">
+            <label class="form-label">Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="transaction-date"
+              required
+            />
+          </div>
+          <div class="mb-3" id="category-container">
+            <label class="form-label">Category</label>
+            <select
+              class="form-select"
+              id="transaction-category"
+              required
+            ></select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Amount</label>
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="transaction-amount"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Payment Method</label>
+            <select class="form-select" id="transaction-method" required>
+              <option value="Cash">Cash</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Notes</label>
+            <textarea class="form-control" id="transaction-notes"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="hideAddForm()"
+          >
+            Cancel
+          </button>
+        </form>
+      </div>
+
+      <h4 class="mt-4">Recent Transactions</h4>
+      <div id="transactions-list"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
